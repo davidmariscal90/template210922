@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector } from '../store/reducers';
 import AuthStack, { AuthStackParamList } from './auth/AuthStack';
 import BottomTabNav, { HomeTabParamList } from './main/BottomTabNav'
+import HomeTab from './main/HomeTab';
 
 export type rootStackParamList = {
     AuthStack: undefined;
@@ -36,7 +37,7 @@ const index = (): JSX.Element => {
             }
             {logined &&
                 <>
-                    <RootTab.Screen name="HomeTab" component={BottomTabNav} />
+                    <RootTab.Screen name="HomeTab" component={HomeTab} />
                 </>
             }
 

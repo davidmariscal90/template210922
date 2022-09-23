@@ -1,6 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
+import GalleryChooser, { ProcessedImage } from '../screens/Home/Account/GalleryChooser';
+
 /**import { ExtraPost } from '../reducers/postReducer';
 import { ProfileX } from '../reducers/profileXReducer';
 import { HashTag, UserInfo, Bookmark, Highlight } from '../reducers/userReducer';
@@ -57,8 +59,9 @@ export type SuperRootStackParamList = {
         item: ExtraPost,
         setPost?: React.Dispatch<React.SetStateAction<ExtraPost>>
     },
-    EditProfile: undefined,
+    EditProfile: undefined,*/
     GalleryChooser: { isChooseProfilePhoto?: boolean },
+    /**
     TagPeople: {
         images: ProcessedImage[],
         onDone?: (images: ProcessedImage[]) => void

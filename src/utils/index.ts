@@ -1,5 +1,5 @@
-/**import storage from '@react-native-firebase/storage'
 import firestore from '@react-native-firebase/firestore'
+/**import storage from '@react-native-firebase/storage'
 import { UserInfo } from "../reducers/userReducer"
 import { store } from "../store"
 import { MAPBOX_ACCESS_TOKEN, CLASSIFY_API } from "../constants"
@@ -8,7 +8,7 @@ import { ExtraPost } from "../reducers/postReducer"
 import { ProfileX } from "../reducers/profileXReducer"
 import { StoryProcessedImage } from "../screens/Others/StoryProcessor"*/
 
-/**export const timestampToString = (create_at: number, suffix?: boolean): string => {
+export const timestampToString = (create_at: number, suffix?: boolean): string => {
     let diffTime: string | number = (new Date().getTime() - (create_at || 0)) / 1000
     if (diffTime < 60) diffTime = 'Just now'
     else if (diffTime > 60 && diffTime < 3600) {
@@ -28,7 +28,7 @@ import { StoryProcessedImage } from "../screens/Others/StoryProcessor"*/
 }
 export const convertDateToTimeStampFireBase = (date: Date): firestore.Timestamp => {
     return new firestore.Timestamp(Math.floor(date.getTime() / 1000), date.getTime() - Math.floor(date.getTime() / 1000) * 1000)
-}*/
+}
 export const generateUsernameKeywords = (fullText: string): string[] => {
     const keywords: string[] = []
     const splitedText = fullText.split('')
@@ -50,7 +50,7 @@ export const generateUsernameKeywords = (fullText: string): string[] => {
     })
     users = users.filter(u => u.username !== store.getState().user.user.userInfo?.username)
     return users
-}
+}*/
 export const uriToBlob = (uri: string) => {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -64,7 +64,7 @@ export const uriToBlob = (uri: string) => {
         xhr.open('GET', uri, true);
         xhr.send(null);
     });
-}*/
+}
 export type MapBoxAddress = {
     id?: string,
     place_name?: string,
@@ -194,13 +194,13 @@ export const shareProfile = (user: ProfileX) => {
         ],
     }
     Share.open(options)
-}
+}*/
 export const Timestamp = () => {
     const curDate = new Date()
     const second = Math.floor(curDate.getTime() / 1000)
     const nanosecond = curDate.getTime() - second * 1000
     return new firestore.Timestamp(second, nanosecond)
-}*/
+}
 export const convertToFirebaseDatabasePathName = (text: string) => {
     return text.replace(/\./g, "!").replace(/#/g, "@")
         .replace(/\$/g, "%").replace(/\[/g, "&")
@@ -260,8 +260,8 @@ export const uploadSuperImages = (images: StoryProcessedImage[]): Promise<{
                 })))),
         }
     })
-}
-export const getImageClass = (url: string): Promise<string> => {
+}*/
+/**export const getImageClass = (url: string): Promise<string> => {
     return new Promise((resolve, reject) => {
         const data = new FormData()
         data.append('URL', url)
@@ -275,7 +275,7 @@ export const getImageClass = (url: string): Promise<string> => {
                 } else reject('Error')
             })
     })
-}
+}*/
 export function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-}*/
+}

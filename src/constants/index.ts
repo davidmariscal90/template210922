@@ -97,6 +97,7 @@ export type SettingNavigation = {
     navigationName: string,
     child?: SettingNavigation[]
 }
+export const settingNavigationMap: SettingNavigation[] = [];
 /**export const settingNavigationMap: SettingNavigation[] = [
     {
         icon: 'account-plus-outline',

@@ -1020,8 +1020,13 @@ PODS:
     - React-Core
   - react-native-camera/RN (4.2.1):
     - React-Core
+  - react-native-cameraroll (5.0.2):
+    - React-Core
   - react-native-contacts (7.0.5):
     - React-Core
+  - react-native-image-editor (2.3.0):
+    - React
+    - React-RCTImage
   - react-native-image-filter-kit (0.8.0):
     - Bolts/Tasks (= 1.9.0)
     - React
@@ -1209,7 +1214,9 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-camera (from `../node_modules/react-native-camera`)
+  - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
   - react-native-contacts (from `../node_modules/react-native-contacts`)
+  - "react-native-image-editor (from `../node_modules/@react-native-community/image-editor`)"
   - react-native-image-filter-kit (from `../node_modules/react-native-image-filter-kit`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
@@ -1338,8 +1345,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/blur"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
+  react-native-cameraroll:
+    :path: "../node_modules/@react-native-camera-roll/camera-roll"
   react-native-contacts:
     :path: "../node_modules/react-native-contacts"
+  react-native-image-editor:
+    :path: "../node_modules/@react-native-community/image-editor"
   react-native-image-filter-kit:
     :path: "../node_modules/react-native-image-filter-kit"
   react-native-maps:
@@ -1467,7 +1478,9 @@ SPEC CHECKSUMS:
   React-logger: 7bd569e3857d74ed412ce0a5c51f421ff7d4ca7f
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-camera: 3eae183c1d111103963f3dd913b65d01aef8110f
+  react-native-cameraroll: 4d0cb1c3413d4b7b85beb68a8c14325d887b404c
   react-native-contacts: 0aa99963d8f29099d4725cd0d2f8b6ef5f0d9a2d
+  react-native-image-editor: 9361a215c3991cafbe5e7f28cbbad6e72c9c2705
   react-native-image-filter-kit: d79137549eb44f8215b7f2be5e77213f605e2c92
   react-native-maps: f4067ffa5044ade5bf98d6dde15014318a537c2f
   react-native-pager-view: da490aa1f902c9a5aeecf0909cc975ad0e92e53e

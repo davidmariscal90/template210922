@@ -8,8 +8,7 @@ import { navigate } from "../navigation/rootNavigation";
 import { defaultUserState, ErrorAction, ExtraInfoPayload, NotificationProperties, NotificationSetting, PostStoryCommentOptions, PrivacyCommentOptions, PrivacyProperties, PrivacySetting, SuccessAction, userAction, userActionTypes, UserInfo, userPayload, UserSetting, HashTag, SearchItem, BookmarkCollection, Bookmark, StoryArchive, PostArchive, Highlight } from '../store/reducers/userReducer';
 import { WelcomePropsRouteParams } from '../screens/Auth/Welcome'
 import { store } from '../store/Store';
-//import { generateUsernameKeywords, uriToBlob, Timestamp } from '../utils';
-import { generateUsernameKeywords } from '../utils';
+import { generateUsernameKeywords, uriToBlob, Timestamp } from '../utils';
 import { Alert } from 'react-native';
 //import { CreateNotificationRequest } from './notificationActions';
 //import { notificationTypes } from '../reducers/notificationReducer';
@@ -480,6 +479,7 @@ export const ToggleSendFollowRequest = (username: string):
     }
 }
 //UPDATE USER INFO ACTIONS 
+*/
 export const UpdateUserInfoRequest = (updateUserData: UserInfo):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
@@ -536,6 +536,7 @@ export const UpdateUserInfoRequest = (updateUserData: UserInfo):
         }
     }
 }
+
 export const UpdateUserInfoFailure = (): ErrorAction => {
     return {
         type: userActionTypes.UPDATE_USER_INFO_FAILURE,
@@ -550,6 +551,7 @@ export const UpdateUserInfoSuccess = (user: UserInfo): SuccessAction<UserInfo> =
         payload: user
     }
 }
+/** 
 //UPDATE NOTIFICATION ACTIONS
 export const UpdateNotificationSettingsRequest = (setting: NotificationSetting):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
@@ -668,7 +670,7 @@ export const UpdatePrivacySettingFailure = ():
             message: `Error! Can't update setting`
         }
     }
-}
+}*/
 export const UploadAvatarRequest = (uri: string, extension: string):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
@@ -689,7 +691,7 @@ export const UploadAvatarRequest = (uri: string, extension: string):
         }
     }
 }
-export const RemoveFollowerRequest = (username: string):
+/**export const RemoveFollowerRequest = (username: string):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
         try {
@@ -926,7 +928,7 @@ export const RemoveRecentSearchRequest = (searchItem: SearchItem):
             Alert.alert('Error', 'Please check your network!')
         }
     }
-}
+}*/
 export const ToggleBookMarkRequest = (postId: number, previewUri: string):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
@@ -990,6 +992,7 @@ export const ToggleBookMarkRequest = (postId: number, previewUri: string):
         }
     }
 }
+/**
 export const CreateBookmarkCollectionRequest = (collection: BookmarkCollection):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
@@ -1235,7 +1238,7 @@ export const FetchArchiveRequest = ():
 
         }
     }
-}
+}*/
 export const AddStoryArchiveRequest = (storyList: StoryArchive[]):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
@@ -1267,7 +1270,7 @@ export const AddStoryArchiveRequest = (storyList: StoryArchive[]):
         }
     }
 }
-export const AddPostArchiveRequest = (postList: PostArchive[]):
+/**export const AddPostArchiveRequest = (postList: PostArchive[]):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
         try {
