@@ -4,6 +4,7 @@ import React from 'react';
 import GalleryChooser, { ProcessedImage } from '../screens/Home/Account/GalleryChooser';
 import LocationChooser from '../screens/Home/Account/LocationChooser';
 import TagPeople from '../screens/Home/Account/TagPeople';
+import Logout from '../screens/Home/Account/Setting/Logout';
 
 /**import { ExtraPost } from '../reducers/postReducer';
 import { ProfileX } from '../reducers/profileXReducer';
@@ -71,6 +72,7 @@ export type SuperRootStackParamList = {
         address?: MapBoxAddress,
         onDone?: (address: MapBoxAddress) => void
     },
+    Logout: undefined,
     /**
     TagPeople: {
         images: ProcessedImage[],
@@ -173,7 +175,6 @@ export type SuperRootStackParamList = {
     StoryViewerOptions: {
         username: string
     },
-    Logout: undefined,
     AddToHighlights: {
         uid: number,
         superId: number
@@ -203,7 +204,12 @@ const index = (): JSX.Element => {
                 <RootStack.Screen options={{
                     ...TransitionPresets.ModalTransition,
                 }} name="LocationChooser" component={LocationChooser} />
+                <RootStack.Screen options={{
+                    animationEnabled: false,
+                    cardStyle: { backgroundColor: 'transparent' }
+                }} name="Logout" component={Logout} />
             </RootStack.Navigator>
+
         </NavigationContainer>
     )
 }

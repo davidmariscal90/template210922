@@ -1,6 +1,6 @@
 const IMAGES = {
   GRADIENT: require('../assets/images/background_gold_gradient.png'),
-  DENDA_LOGO: require('../assets/images/dendagrey.png'),
+  LOGO: require('../assets/images/logoApp.png'),
   DENDA_WHITE_LOGO: require('../assets/images/denda_white.png'),
   RECIPE01: require('../assets/images/recipe01.jpeg'),
   RECIPE02: require('../assets/images/recipe02.jpeg'),

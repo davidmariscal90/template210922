@@ -94,7 +94,7 @@ const Register = () => {
                     <Image
                         resizeMode="contain"
                         style={styles.logo}
-                        source={IMAGES.DENDA_LOGO} />
+                        source={IMAGES.LOGO} />
                 </View>
                     <Formik
                         validateOnBlur={false}

@@ -101,7 +101,7 @@ export const LoginSuccess = (payload: userPayload): SuccessAction<userPayload> =
         payload: payload
     }
 }
-/**export const LogoutRequest = ():
+export const LogoutRequest = ():
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, userAction>) => {
         try {
@@ -118,7 +118,7 @@ export const LoginSuccess = (payload: userPayload): SuccessAction<userPayload> =
             })
         }
     }
-}*/
+}
 export const RegisterRequest = (userData: RegisterParams):
     ThunkAction<Promise<void>, {}, {}, userAction> => {
     return (dispatch: ThunkDispatch<{}, {}, userAction>) => {
