@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { ExtraNotification, notificationTypes } from '../../reducers/notificationReducer'
+import { ExtraNotification, notificationTypes } from '../../store/reducers/notificationReducer'
 import FastImage from 'react-native-fast-image'
 import { SCREEN_WIDTH } from '../../constants'
-import { navigate } from '../../navigations/rootNavigation'
+import { navigate } from '../../navigation/rootNavigation'
 import { timestampToString } from '../../utils'
 
 export interface NotificationItemProps {

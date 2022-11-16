@@ -9,6 +9,7 @@ import { settingNavigationMap } from '../../constants'
 import HomeIndex from '../../screens/Home'
 import Account from '../../screens/Home/Account'
 import Setting from '../../screens/Home/Account/SettingIndex'
+import Activity from '../../screens/Home/Activity'
 /**import AccountYouDontFollowBack from '../screens/Home/Account/AccountYouDontFollowBack'
 import Follow from '../screens/Home/Account/Follow'
 import FollowRequests from '../screens/Home/Account/FollowRequests'
@@ -17,7 +18,7 @@ import RecentFollowingInteraction from '../screens/Home/Account/RecentFollowingI
 import SettingNavigationx from '../screens/Home/Account/Setting/index'
 import Activity from '../screens/Home/Activity'*/
 import Creator from '../../screens/Home/Creator'
-/**import Explore from '../screens/Home/Explore'*/
+import Explore from '../../screens/Home/Explore'
 import CustomAccountIcon from '../../components/CustomTabIcons/CustomAccountIcon'
 /**import Location from '../screens/Home/Explore/Location'
 import Hashtag from '../screens/Home/Explore/Hashtag'
@@ -118,10 +119,11 @@ const ActivityStack = () => {
             headerShown: false,
             gestureEnabled: false
         }}>
-   
+            <Stack.Screen name="ActiviyIndex" component={Activity} />
         </Stack.Navigator>
     )
 }
+
 /**const ExploreStack = () => {
     return (
         <Stack.Navigator screenOptions={{
@@ -143,6 +145,7 @@ const ExploreStack = () => {
             headerShown: false,
             gestureEnabled: false
         }}>
+            <Stack.Screen name="Explore" component={Explore} />
         </Stack.Navigator>
     )
 }
