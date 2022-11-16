@@ -10,7 +10,6 @@ import { convertToFirebaseDatabasePathName } from './src/utils';
 import { AppState } from 'react-native';
 
 //import AuthSelector from './src/components/selector/AuthSelector';
-
 interface IProps {
     navigation: StackNavigationProp<any, any>,
 }

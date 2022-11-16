@@ -7,14 +7,14 @@ import { TabBarComponent } from '../../components/BottomTabBar'
 import CustomNotificationIcon from '../../components/CustomTabIcons/CustomNotificationIcon'
 import { settingNavigationMap } from '../../constants'
 import HomeIndex from '../../screens/Home'
-/**import Account from '../screens/Home/Account'
-import AccountYouDontFollowBack from '../screens/Home/Account/AccountYouDontFollowBack'
+import Account from '../../screens/Home/Account'
+import Setting from '../../screens/Home/Account/SettingIndex'
+/**import AccountYouDontFollowBack from '../screens/Home/Account/AccountYouDontFollowBack'
 import Follow from '../screens/Home/Account/Follow'
 import FollowRequests from '../screens/Home/Account/FollowRequests'
 import RecentFollowerInteraction from '../screens/Home/Account/RecentFollowerInteraction'
 import RecentFollowingInteraction from '../screens/Home/Account/RecentFollowingInteraction'
 import SettingNavigationx from '../screens/Home/Account/Setting/index'
-import Setting from '../screens/Home/Account/SettingIndex'
 import Activity from '../screens/Home/Activity'*/
 import Creator from '../../screens/Home/Creator'
 /**import Explore from '../screens/Home/Explore'*/
@@ -41,6 +41,8 @@ export type HomeTabParamList = {
         type: 1 | 2
     }
 };
+
+//LOS 5 STACKS DEL MENU DEL FOOTER, SU DEFINICIÓN CON TODO LO QUE TIENEN DENTRO
 const Stack = createStackNavigator()
 const AccountStack = () => {
     return (
@@ -48,6 +50,8 @@ const AccountStack = () => {
             headerShown: false,
             gestureEnabled: false
         }}>
+            <Stack.Screen component={Account} name="AccountIndex" />
+            <Stack.Screen component={Setting} name="Setting" />
 
         </Stack.Navigator>
         )};
@@ -171,6 +175,8 @@ const HomeStack = () => {
         </Stack.Navigator>
     )
 }
+
+//CREA EL TAB NAVIGATOR CON LOS 5 STACKS
 const Tab = createBottomTabNavigator<HomeTabParamList>()
 const HomeTab = () => {
     const tabBarOptions: BottomTabBarOptions = {

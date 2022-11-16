@@ -4,7 +4,7 @@ import '@firebase/firestore';
 import * as firebase from 'firebase/app';
 import { Dimensions } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-//import SettingComponents from '../screens/Home/Account/Setting';
+import SettingComponents from '../screens/Home/Account/Setting';
 import { defaultUserState } from '../store/reducers/userReducer';
 //import { convertToFirebaseDatabasePathName } from '../utils';
 //Define API ClASSIFY
@@ -97,8 +97,8 @@ export type SettingNavigation = {
     navigationName: string,
     child?: SettingNavigation[]
 }
-export const settingNavigationMap: SettingNavigation[] = [];
-/**export const settingNavigationMap: SettingNavigation[] = [
+//export const settingNavigationMap: SettingNavigation[] = [];
+export const settingNavigationMap: SettingNavigation[] = [
     {
         icon: 'account-plus-outline',
         name: 'Follow and Invite Friends',
@@ -391,4 +391,4 @@ export const settingNavigationMap: SettingNavigation[] = [];
             }
         ]
     }
-]*/
+]

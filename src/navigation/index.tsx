@@ -2,6 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import GalleryChooser, { ProcessedImage } from '../screens/Home/Account/GalleryChooser';
+import LocationChooser from '../screens/Home/Account/LocationChooser';
+import TagPeople from '../screens/Home/Account/TagPeople';
 
 /**import { ExtraPost } from '../reducers/postReducer';
 import { ProfileX } from '../reducers/profileXReducer';
@@ -61,6 +63,14 @@ export type SuperRootStackParamList = {
     },
     EditProfile: undefined,*/
     GalleryChooser: { isChooseProfilePhoto?: boolean },
+    TagPeople: {
+        images: ProcessedImage[],
+        onDone?: (images: ProcessedImage[]) => void
+    },
+    LocationChooser: {
+        address?: MapBoxAddress,
+        onDone?: (address: MapBoxAddress) => void
+    },
     /**
     TagPeople: {
         images: ProcessedImage[],
@@ -184,6 +194,15 @@ const index = (): JSX.Element => {
                 initialRouteName='RootTab'
                 screenOptions={navigationOptions}>
                 <RootStack.Screen name="RootTab" component={RootTab} />
+                <RootStack.Screen options={{
+                    ...TransitionPresets.ModalTransition,
+                }} name="GalleryChooser" component={GalleryChooser} />
+                <RootStack.Screen options={{
+                    ...TransitionPresets.ModalTransition,
+                }} name="TagPeople" component={TagPeople} />
+                <RootStack.Screen options={{
+                    ...TransitionPresets.ModalTransition,
+                }} name="LocationChooser" component={LocationChooser} />
             </RootStack.Navigator>
         </NavigationContainer>
     )

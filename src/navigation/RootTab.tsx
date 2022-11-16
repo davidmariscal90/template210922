@@ -26,6 +26,7 @@ const index = (): JSX.Element => {
         }
     }
     const logined = !!user?.user?.userInfo
+    //Comprueba si el usuario está logeado o no para dirigirle al login o a Home cuando abre la App.
     return (
         <RootTab.Navigator
             initialRouteName={logined ? 'HomeTab' : 'AuthStack'}

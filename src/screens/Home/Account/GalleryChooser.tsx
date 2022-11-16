@@ -3,10 +3,11 @@ import ImageEditor, { ImageCropData } from '@react-native-community/image-editor
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect, useRef, useState } from 'react'
-import { Alert, Animated, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, KeyboardAvoidingView } from 'react-native'
+import { Alert, Animated, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, KeyboardAvoidingView, Platform } from 'react-native'
 import { FlatList, PanGestureHandler, PanGestureHandlerGestureEvent, PinchGestureHandler, PinchGestureHandlerGestureEvent, State, TextInput } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useDispatch } from 'react-redux'
+import storage from '@react-native-firebase/storage';
 import { UploadAvatarRequest } from '../../../actions/userActions'
 import AvatarChooserMask from '../../../components/AvatarChooserMask'
 import ImageChooserMask from '../../../components/ImageChooserMask'
@@ -16,8 +17,10 @@ import { goBack, navigate } from '../../../navigation/rootNavigation'
 import Switcher from '../../../components/Switcher'
 import { MapBoxAddress, uriToBlob, Timestamp, generateUsernameKeywords } from '../../../utils'
 import { Post, PostImage } from '../../../store/reducers/postReducer'
-import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import ref from '@react-native-firebase/storage';
+import uploadBytesResumable from '@react-native-firebase/storage';
+import getDownloadURL from '@react-native-firebase/storage';
 
 import { store } from '../../../store/Store'
 import { CreatePostRequest } from '../../../actions/postActions'
@@ -120,10 +123,13 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
     }
 
     useEffect(() => {
+        console.log("GalleryChooser 1");
         CameraRoll.getPhotos({ assetType: 'Photos', first: 1000 })
             .then(result => {
                 const photos = result.edges
                 const groups = Array.from(new Set(photos.map(photo => photo.node.group_name)))
+                console.log("GalleryChooser 1 photos", photos);
+                console.log("GalleryChooser 1 groups", groups);
                 setGroups(groups)
                 if (groups.length > 0) setSelectedGroupIndex(0)
             })
@@ -133,6 +139,7 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
     useEffect(() => {
 
         if (selectedGroupIndex > -1) {
+            console.log("GalleryChooser 2");
             CameraRoll.getPhotos({
                 assetType: 'Photos',
                 first: 8 * page,
@@ -140,6 +147,7 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
             })
                 .then(result => {
                     const photos = result.edges
+                    console.log("GalleryChooser 2 photos", photos);
                     setPhotos(photos)
                     if (photos.length > 0 && selectedIndex < 0) setSelectedIndex(0)
                 })
@@ -149,8 +157,10 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
         }
     }, [selectedGroupIndex, page])
     useEffect(() => {
+        console.log("GalleryChooser 3");
         if (selectedIndex > -1) {
             const position = selectedPhotos.indexOf(selectedIndex)
+            console.log("GalleryChooser 3 position", position);
             if (position > -1 && selectedPhotoSpecs[position] && multiple) {
                 ref.current.currentPhoto = { ...selectedPhotoSpecs[position].currentPhoto }
                 ref.current.preventScaleOffset = selectedPhotoSpecs[position].preventScaleOffset
@@ -329,6 +339,7 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
     }
     const _onDone = async () => {
         setUploading(true)
+
         if (isChooseProfilePhoto) {
             const cropData: ImageCropData = {
                 offset: {
@@ -412,13 +423,22 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
             else {
                 const imageList = [...processedImages]
                 const tasks: Promise<PostImage>[] = imageList.map(async (img, index) => {
-                    const blob = await uriToBlob(img.uri)
+                    const uploadUri = Platform.OS === 'ios' ? img.uri.replace('file://', '') : img.uri;
+                    const blob = await uriToBlob(uploadUri)
+                    console.log('blob _onDone await', blob);
                     const rq = await storage()
                         .ref(`posts/${user?.username || 'others'}/${new Date().getTime() + Math.random()}.${img.extension}`)
-                        .put(blob as Blob, {
+                        .putFile(img.uri, {
                             contentType: `image/${img.extension}`
                         })
-                    const downloadUri = await rq.ref.getDownloadURL()
+                    console.log('blob _onDone', blob);
+                    console.log('rq _onDone', rq);
+                    console.log('rq _onDone ref', rq.ref);
+                    //const downloadUri = await await storage()
+                    //.ref(`posts/${user?.username || 'others'}/${new Date().getTime() + Math.random()}.${img.extension}`).getDownloadURL()
+                    //const downloadUri = `gs://template-7c5fe.appspot.com/${rq.metadata.name}`
+                    const downloadUri = await storage().ref(`posts/${user?.username || 'others'}/${new Date().getTime() + Math.random()}.${img.extension}`).getDownloadURL()
+                    await console.log('getDownloadURL getDownloadURL getDownloadURL', downloadUri)
                     return {
                         uri: downloadUri,
                         width: img.width,
@@ -434,7 +454,10 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
                         }))
                     }
                 })
+                console.log('PASA RETURN');
+                             
                 Promise.all(tasks).then(async resultList => {
+                    console.log('PASA RETURN PROMISE');
                     let tagUsername: string[] = []
                     resultList.map(img => {
                         img.tags.map(tag => tagUsername.push(tag.username))
@@ -469,12 +492,14 @@ const GalleryChooser = ({ navigation, route }: GalleryChooserProps) => {
                         },
                         userId: user?.username
                     }
+                    console.log('PASA RETURN 3');
                     dispatch(CreatePostRequest(postData))
                     goBack()
                 })
             }
         }
     }
+    
     const _onLoadmore = () => {
         setPage(page + 1)
     }

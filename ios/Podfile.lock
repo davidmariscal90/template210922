@@ -1108,7 +1108,7 @@ PODS:
     - React-Core
   - RNCClipboard (1.5.1):
     - React-Core
-  - RNCMaskedView (0.2.7):
+  - RNCMaskedView (0.2.8):
     - React-Core
   - RNFastImage (8.6.1):
     - React-Core
@@ -1500,7 +1500,7 @@ SPEC CHECKSUMS:
   ReactCommon: 7f86326b92009925c6dcf93f8e825060171c379f
   RNCAsyncStorage: 0c357f3156fcb16c8589ede67cc036330b6698ca
   RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
-  RNCMaskedView: cb9670ea9239998340eaab21df13fa12a1f9de15
+  RNCMaskedView: bc0170f389056201c82a55e242e5d90070e18e5a
   RNFastImage: 3207b9eb17c2425d574ca40db35185db6e324f4e
   RNFBApp: 75adb6116fa1504b370c2dcadfdafe0362c78664
   RNFBAuth: 2b1091679f39e6cb6eb2479d85b08c1bd9360a9f

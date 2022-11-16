@@ -1,8 +1,9 @@
 import firestore from '@react-native-firebase/firestore'
-/**import storage from '@react-native-firebase/storage'
-import { UserInfo } from "../reducers/userReducer"
-import { store } from "../store"
-import { MAPBOX_ACCESS_TOKEN, CLASSIFY_API } from "../constants"
+//import storage from '@react-native-firebase/storage'
+ 
+import { UserInfo } from "../store/reducers/userReducer"
+import { store } from "../store/Store"
+/**import { MAPBOX_ACCESS_TOKEN, CLASSIFY_API } from "../constants"
 import Share, { Options } from "react-native-share"
 import { ExtraPost } from "../reducers/postReducer"
 import { ProfileX } from "../reducers/profileXReducer"
@@ -38,7 +39,7 @@ export const generateUsernameKeywords = (fullText: string): string[] => {
     })
     return Array.from(new Set(keywords))
 }
-/**export const findUsersByName = async (q: string) => {
+export const findUsersByName = async (q: string) => {
     let users: UserInfo[] = []
     const ref = firestore()
     const rq = await ref.collection('users').where(
@@ -50,7 +51,7 @@ export const generateUsernameKeywords = (fullText: string): string[] => {
     })
     users = users.filter(u => u.username !== store.getState().user.user.userInfo?.username)
     return users
-}*/
+}
 export const uriToBlob = (uri: string) => {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -74,7 +75,7 @@ export type MapBoxAddress = {
     storySources?: number[],
     center?: [number, number]
 }
-/**export const searchLocation = (query: string): Promise<MapBoxAddress[]> => {
+export const searchLocation = (query: string): Promise<MapBoxAddress[]> => {
     return new Promise((resolve, reject) => {
         fetch(`http://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(query.trim())}.json?access_token=${MAPBOX_ACCESS_TOKEN}`)
             .then(res => res.json())
@@ -95,7 +96,7 @@ export type MapBoxAddress = {
             .catch(err => reject(err))
     })
 }
-export const sharePost = (post: ExtraPost) => {
+/**export const sharePost = (post: ExtraPost) => {
     const options: Options = {
         activityItemSources: [
             { // For sharing url with custom title.
